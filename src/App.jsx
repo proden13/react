@@ -9,7 +9,6 @@ const Promo = (props) => {
         default: name = "promo";
     }
 
-    
     return (
         <div className={name}>
             <div className={props.pic ? "promo-pic" : "promo-pic pic2"}></div>
@@ -18,6 +17,25 @@ const Promo = (props) => {
     )
 }
 
+const sizes = ["sm", "lg", "md"];
+const adds = [];
+
+let text = "Полёты собак в космос — серия биологических экспериментов, включавших проведение исследований по возможности полётов на геофизических и космических ракетах живых существ, наблюдение за поведением высокоорганизованных животных в условиях таких полётов, а также, изучение сложных явлений в околоземном пространстве."
+text = text.match(/[^\s,.]+/g);
+console.log(text);
+
+const rand = (n) => Math.floor(Math.random() * n);
+
+let n = 8;
+while(n--) {
+    adds.push({
+        text: `${text[rand(text.length)]} ${text[rand(text.length)]} ${text[rand(text.length)]}`,
+        pic: !!Math.round(Math.random()), // !!0 => false - !!1 => true
+        sizes: sizes[rand(sizes.length)]
+    })
+}
+
+console.log(adds);
 
 const App = () => {
     // let a = (2 + b) * 2;
@@ -31,11 +49,15 @@ const App = () => {
             <mark>React</mark>
         </h2>
         <div className="container">
-            <Promo text="My Promo" type="lg"/>
+            {/* <User name="Vasya" work_age="23" pet="raccoon"/> */}
+            {/* <Promo text="My Promo" type="lg"/>
             <Promo text="^_^" />
-            <Promo text="Doggy" pic={false}/>
+            <Promo text="Doggy" pic={true}/>
             <Promo type="sm"/>
-            <Promo text="Leksa is worst teacher in the Moscow" type="sm"/>
+            <Promo text="Leksa is worst teacher in the Moscow" type="sm"/> */}
+            {/* {text="123"} => <Promo text={text}  {...}/> */}
+            {adds.map(el => <Promo {...el} type={el.sizes}/>)}
+
         </div>
     </div>
 }
