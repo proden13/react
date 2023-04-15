@@ -1,4 +1,5 @@
-import Promo from "./components/Promo/Promo";
+import Promo from "./components/Promo/Promo"; // Promo.jsx
+import Card from "./components/Card"; // index.jsx
 
 const sizes = ["sm", "lg", "md"];
 const adds = [];
@@ -20,6 +21,7 @@ while(n--) {
 const App = () => {
     return <div>
         <div className="container">
+            <Card/>
             {adds.map(el => <Promo {...el} type={el.sizes}/>)}
         </div>
     </div>
