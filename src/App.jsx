@@ -1,5 +1,6 @@
 import Promo from "./components/Promo/Promo"; // Promo.jsx
 import Card from "./components/Card"; // index.jsx
+import {Header, Footer} from "./components/General";
 import cardsData from "./assets/data"; // data.json
 
 const sizes = ["sm", "lg", "md"];
@@ -20,7 +21,9 @@ while(n--) {
 }
 
 const App = () => {
+    const user = localStorage.getItem("rockUser")
     return <div>
+        <Header user={user}/>
         <div className="container">
             {/* <Card 
                 img={cardsData[0].pictures}
@@ -38,6 +41,7 @@ const App = () => {
                 Each child in a list should have a unique "key" prop.
             */}
         </div>
+        <Footer/>
     </div>
 }
 
