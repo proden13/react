@@ -27,9 +27,14 @@ while(n--) {
 const App = () => {
     const [goods, setGoods] = useState(cardsData);
     const [user, setUser] = useState(localStorage.getItem("rockUser"));
+    const [modalActive, setModalActive] = useState(false);
     return (
         <>
-            <Header user={user} setUser={setUser}/>
+            <Header 
+                user={user} 
+                setUser={setUser} 
+                setModalActive={setModalActive}
+            />
             <div className="container">
                 <Search arr={cardsData} upd={setGoods}/>
                 {goods.map((el, i) => <Card
@@ -41,7 +46,10 @@ const App = () => {
                 {adds.map((el,i) => <Promo key={i} {...el} type={el.sizes}/>)}
             </div>
             <Footer/>
-            <Modal/>
+            <Modal 
+                active={modalActive} 
+                setActive={setModalActive}
+            />
         </>
     )
     // </div>
