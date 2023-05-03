@@ -1,5 +1,5 @@
 import {useState} from "react";
-import {BrowserRouter, Routes, Route, Link} from "react-router-dom";
+import {Routes, Route} from "react-router-dom";
 
 // компоненты (кусочки кода, которые используются многократно)
 import {Header, Footer} from "./components/General";
@@ -10,6 +10,14 @@ import Search from "./components/Search";
 import Draft from "./pages/Draft";
 import Main from "./pages/Main";
 import Catalog from "./pages/Catalog";
+import Profile from "./pages/Profile";
+
+/*
+    TODO: проработать материал с лекции:
+    - Изменить ссылки на Link внутри Logo и Footer
+    - После входа перенаправлять пользователя на страница профиля (useNavigate)
+    - В подвал добавить ссылку на Draft
+*/
 
 const App = () => {
     const [user, setUser] = useState(localStorage.getItem("rockUser"));
@@ -18,7 +26,6 @@ const App = () => {
         <>
             <Header 
                 user={user} 
-                setUser={setUser} 
                 setModalActive={setModalActive}
             />
             <main>
@@ -26,23 +33,20 @@ const App = () => {
                 {/* 
                     SPA - Single Page Application (одностраничное)
                 */}
-                
-                <nav>
-                    <Link to="/">Главная </Link>
-                    <Link to="/catalog">Каталог </Link>
-                    <Link to="/draft">Старый код</Link>
-                </nav>
                 <Routes>
                     <Route path="/" element={<Main/>}/>
                     <Route path="/catalog" element={<Catalog/>}/>
                     <Route path="/draft" element={<Draft/>}/>
+                    <Route path="/profile" element={
+                        <Profile user={user} setUser={setUser} color="yellow"/>
+                    }/>
                 </Routes>
-                
             </main>
             <Footer/>
             <Modal 
                 active={modalActive} 
                 setActive={setModalActive}
+                setUser={setUser}
             />
         </>
     )
