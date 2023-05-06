@@ -13,6 +13,8 @@ const Profile = ({ user, color, setUser }) => {
         e.preventDefault();
         setUser("")// setUser() => setUser(null) 
         localStorage.removeItem("rockUser");
+        localStorage.removeItem("rockToken");
+        localStorage.removeItem("rockId");
         navigate("/");
         // useNavigate()("/")
     }
